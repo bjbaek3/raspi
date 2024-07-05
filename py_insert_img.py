@@ -10,14 +10,14 @@ def convertToBinaryData(filename):
 def insertBLOB(number, name, photo):
     print("Inserting BLOB into images table")
     try:
-        connection = mysql.connector.connect(host='127.0.0.1',
-                                             database='image_db',
-                                             user='junho',
-                                             password='passwd123')
+        connection = mysql.connector.connect(host='oldmansea.synology.me',
+                                             database='oldman',
+                                             user='root',
+                                             password='Fyeo2014!@#')
 
         cursor = connection.cursor()
-        sql_insert_blob_query = """ INSERT INTO images
-                          (id, name, photo) VALUES (%s,%s,%s)"""
+        sql_insert_blob_query = """ INSERT INTO photolog
+                          (yyyymmdd, photo, flag) VALUES (%s,%s,%s)"""
 
         Picture = convertToBinaryData(photo)
 
@@ -36,4 +36,4 @@ def insertBLOB(number, name, photo):
             connection.close()
             print("MySQL connection is closed")
 
-insertBLOB(None, "test1", "lena512.bmp")
+insertBLOB(None, "test", "lena512.bmp")
