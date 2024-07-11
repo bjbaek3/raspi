@@ -3,7 +3,7 @@
 import pymysql
 import base64
 import io
-
+import ftplib
 import PIL.Image
 
 with open('/home/raspi/python/img02.png', 'rb') as f:
@@ -18,5 +18,13 @@ while i <= 10:
     i += 1
     db.commit()
 
-
 db.close()
+
+
+with ftplib.FTP(host='oldmansea.synology.me') as ftp:
+    ftp.set_pasv(False)
+    ftp.login(user='51050072', passwd='11')
+    ftp.cwd('./php/img')
+ 
+    with open('../img01.bmp', 'rb') as read_f:
+        ftp.storbinary("STOR img02.bmp", read_f)
